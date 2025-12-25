@@ -11,6 +11,7 @@
 #include "SpeakerGrill.h"
 #include "SpeakerGrillCounter.h"
 #include "SpeakerGrillDice.h"
+#include "BatteryWidget.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -109,12 +110,6 @@ int main(int argc, char *argv[])
     SpeakerGrill *grill2 = new SpeakerGrill(1, 3, 1, 1, 16);
     kw.add_widget_at_grid(grill2);
 
-    // SpeakerGrill *grill3 = new SpeakerGrill(2, 3, 3, 1, 16);
-    // kw.add_widget_at_grid(grill3);
-
-    // NotificationWidget *notif = new NotificationWidget("\n\nAlert!", "Low Storage");
-    // ModularWidget *notif_parent = new ModularWidget(notif->get_widget(), 3, 3, 2, 1);
-    // kw.add_widget_at_grid(notif_parent->get_widget(), 3, 3, 2, 1);
     SpeakerGrillCounter *grillCounter = new SpeakerGrillCounter(2, 3, 1, 1, 16);
     kw.add_widget_at_grid(grillCounter);
 
@@ -124,7 +119,19 @@ int main(int argc, char *argv[])
 
     QuoteWidget *quote = new QuoteWidget( 1, 4, 4, 1, "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.");
     kw.add_widget_at_grid(quote);
+
+        // Add Battery Widget at Column 4, Row 1 (Top Right corner)
+    BatteryWidget *battery = new BatteryWidget(4, 3, 1, 1);
+
+    // Optional: If testing on PC (no battery file), simulate a value:
+    // battery->set_values(85, true); 
+
+    kw.add_widget_at_grid(battery);
+
+
     kw.show_all();
+
+
 
 
     gtk_main();

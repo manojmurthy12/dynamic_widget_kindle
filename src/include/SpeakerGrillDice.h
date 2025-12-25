@@ -5,6 +5,7 @@
 #include <utility>
 #include <gtk/gtk.h>
 #include "SpeakerGrill.h"
+#include "HapticFeedback.h"
 
 struct Dot
 {
@@ -182,6 +183,7 @@ private:
     {
         if (event->type == GDK_BUTTON_PRESS)
         {
+            HapticFeedback::play_sequence({HapticFeedback::SHARP_CLICK, HapticFeedback::LONG_BUZZ, HapticFeedback::SHARP_CLICK}, 50);
             int roll = (std::rand() % 6) + 1;
             g_print("🎲 Rolling... -> %d\n", roll);
 
